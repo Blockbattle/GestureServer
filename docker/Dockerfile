@@ -16,6 +16,9 @@ WORKDIR /projects
 RUN python3 -m venv venv
 RUN . venv/bin/activate
 
+RUN apt-get update
+RUN apt-get install ffmpeg libsm6 libxext6  -y
+
 # optimize image caching
 COPY requirements.txt .
 RUN pip install -r requirements.txt
