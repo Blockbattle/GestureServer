@@ -28,7 +28,7 @@ model_loaded = keras.models.load_model('gr_model')
 img_generator = keras.preprocessing.image.ImageDataGenerator(
         preprocessing_function=keras.applications.mobilenet_v2.preprocess_input
     )
-back = get_back()
+back = cv2.imread('background.jpg')
 
 app = Flask(__name__)
 
@@ -63,7 +63,7 @@ def recognize_gesture():
         hand_landmarks.landmark[i].x = ((hand_landmarks.landmark[i].x - minX) * (200 - 2 * margin) / maxLength + margin) / 200
         hand_landmarks.landmark[i].y = ((hand_landmarks.landmark[i].y - minY) * (200 - 2 * margin) / maxLength + margin) / 200
 
-    res_img = get_back()#=back
+    res_img = back
 
     mp_drawing.draw_landmarks(
             res_img,
