@@ -1,0 +1,42 @@
+apiVersion: 1.0.0
+metadata:
+  name: gesturecognition
+projects:
+  - name: flask-app
+    source:
+      location: 'https://github.com/elsony/devfile-sample-python-basic'
+      type: git
+components:
+  - id: ms-python/python/latest
+    type: chePlugin
+  - mountSources: true
+    endpoints:
+      - attributes:
+          protocol: http
+          public: 'true'
+          discoverable: 'false'
+          secure: 'false'
+        name: websocket-forward
+        port: 8080
+    memoryLimit: 2048Mi
+    type: dockerimage
+    alias: python
+    image: 'quay.io/eclipse/che-python-3.8:next'
+    env:
+      - value: you-will-never-guess
+        name: FLASK_SECRET
+  - id: redhat/vscode-yaml/latest
+    type: chePlugin
+commands:
+  - name: run
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/flask-app'
+        type: exec
+        command: '${HOME}/.local/bin/gunicorn app:application -b 0.0.0.0:8080'
+        component: python
+  - name: install
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/flask-app'
+        type: exec
+        command: pip3 install -r requirements.txt
+        component: python
