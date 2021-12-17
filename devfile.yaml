@@ -4,7 +4,7 @@ metadata:
   version: 1.0.0
   attributes:
     alpha.build-context: .
-    alpha.build-dockerfile: docker/Dockerfile
+    alpha.build-dockerfile: Dockerfile
 starterProjects:
   - name: python-example
     git:
