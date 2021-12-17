@@ -72,7 +72,7 @@ def recognize_gesture():
             mp_drawing_styles.get_default_hand_landmarks_style(),
             mp_drawing_styles.get_default_hand_connections_style())
 
-    res_img = cv2.flip(res_img, 1))
+    res_img = cv2.flip(res_img, 1)
     
     res_imgs = img_generator.flow(np.array([res_img.tolist()]))
     pred = model_loaded.predict(res_imgs)
