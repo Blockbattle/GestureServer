@@ -60,7 +60,7 @@ def recognize_gesture():
     maxLength = max(w, h)
 
     for i in range(len(hand_landmarks.landmark)):
-        hand_landmarks.landmark[i].x = ((hand_landmarks.landmark[i].x - minX) * (200 - 2 * margin) / maxLength + margin) / 200
+        hand_landmarks.landmark[i].x = ((hand_landmarks.landmark[i].x + maxLength - maxX) * (200 - 2 * margin) / maxLength + margin) / 200
         hand_landmarks.landmark[i].y = ((hand_landmarks.landmark[i].y - minY) * (200 - 2 * margin) / maxLength + margin) / 200
 
     res_img = back
@@ -72,7 +72,7 @@ def recognize_gesture():
             mp_drawing_styles.get_default_hand_landmarks_style(),
             mp_drawing_styles.get_default_hand_connections_style())
 
-    res_img = cv2.flip(res_img, 1)
+    #res_img = cv2.flip(res_img, 1)
     
     res_imgs = img_generator.flow(np.array([res_img.tolist()]))
     pred = model_loaded.predict(res_imgs)
