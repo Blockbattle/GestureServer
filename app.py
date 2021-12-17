@@ -3,8 +3,12 @@ from waitress import serve
 import numpy as np
 from tensorflow import keras
 from mediapipe.framework.formats import landmark_pb2
-from mediapipe.solutions import drawing_utils, drawing_styles, hands
+import mediapipe as mp
 import cv2
+
+mp_drawing = mp.solutions.drawing_utils
+mp_drawing_styles = mp.solutions.drawing_styles
+mp_hands = mp.solutions.hands
 
 def get_back():
     rgb = [255, 255, 255]
@@ -61,12 +65,12 @@ def recognize_gesture():
 
     res_img = get_back()#=back
 
-    drawing_utils.draw_landmarks(
+    mp_drawing.draw_landmarks(
             res_img,
             hand_landmarks,
-            hands.HAND_CONNECTIONS,
-            drawing_styles.get_default_hand_landmarks_style(),
-            drawing_styles.get_default_hand_connections_style())
+            mp_hands.HAND_CONNECTIONS,
+            mp_drawing_styles.get_default_hand_landmarks_style(),
+            mp_drawing_styles.get_default_hand_connections_style())
 
     res_imgs = img_generator.flow(np.array([res_img.tolist()]))
     pred = model_loaded.predict(res_imgs)
