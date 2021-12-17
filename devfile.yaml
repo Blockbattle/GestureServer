@@ -22,7 +22,7 @@ components:
           targetPort: 8081
   - name: py-web
     container:
-      image: quay.io/eclipse/che-python-3.7:nightly
+      image: quay.io/eclipse/che-python-3.8:next
       mountSources: true
       endpoints:
         - name: web
