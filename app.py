@@ -40,7 +40,7 @@ def recognize_gesture():
     res_lmrks = [[]]
     
     for i in range(len(hand_landmarks.landmark)):
-        hand_landmarks.landmark[i].x = ((hand_landmarks.landmark[i].x + maxLength - maxX) * (200 - 2 * margin) / maxLength + margin) / 200
+        hand_landmarks.landmark[i].x = ((hand_landmarks.landmark[i].x - minX) * (200 - 2 * margin) / maxLength + margin) / 200
         hand_landmarks.landmark[i].y = ((hand_landmarks.landmark[i].y - minY) * (200 - 2 * margin) / maxLength + margin) / 200
         res_lmrks[0].append([hand_landmarks.landmark[i].x, hand_landmarks.landmark[i].y])
     
