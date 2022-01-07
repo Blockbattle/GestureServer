@@ -6,7 +6,7 @@ from mediapipe.framework.formats import landmark_pb2
 import mediapipe as mp
 import cv2
 
-model_loaded = keras.models.load_model('gr_rnn2_model')
+model_loaded = keras.models.load_model('gr_rnn5_model')
 
 app = Flask(__name__)
 
