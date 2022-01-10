@@ -24,7 +24,7 @@ def get_back():
     return np.array(img)
     
 
-model_loaded = keras.models.load_model('gr_mobilenet_model')
+model_loaded = keras.models.load_model('gr_mobilenet2_model')
 img_generator = keras.preprocessing.image.ImageDataGenerator(
         preprocessing_function=keras.applications.mobilenet_v2.preprocess_input
     )
