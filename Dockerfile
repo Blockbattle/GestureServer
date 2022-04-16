@@ -9,7 +9,7 @@
 #
 # docker run -i --rm -p 8081:8081 python/sample-basic
 ####
-FROM docker.io/python:3.8
+FROM public.ecr.aws/lts/python:3.8
 
 WORKDIR /projects
 
